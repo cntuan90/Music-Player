@@ -6,10 +6,10 @@ const Credit = () => {
 			<Link href="https://www.facebook.com/cntuan90/" target="_blank">
 				Made by TuanSteve
 			</Link>
-			<br></br>
+			{/* <br></br>
 			<Link href="https://github.com/WilsonLe/react-music-player" target="_blank">
 				Github repository
-			</Link>
+			</Link> */}
 		</CreditContainer>
 	);
 };

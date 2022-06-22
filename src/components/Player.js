@@ -23,7 +23,16 @@ const Player = ({
 			audioRef.current.pause();
 			setIsPlaying(!isPlaying);
 		} else {
-			audioRef.current.play();
+			let playPromise = audioRef.current.play();
+
+			if (playPromise !== undefined) {
+			  playPromise.then(_ => {
+				audioRef.current.play();
+			  })
+			  .catch(error => {
+				audioRef.current.play();
+			  });
+			}
 			setIsPlaying(!isPlaying);
 		}
 	};
@@ -48,6 +57,7 @@ const Player = ({
 	};
 
 	const skipTrackHandler = async (direction) => {
+		console.log(songs);
 		let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
 		if (direction === "skip-forward") {
 			await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
@@ -62,13 +72,14 @@ const Player = ({
 			}
 		}
 		if (isPlaying) {
+			console.log(audioRef.current);
 			audioRef.current.play();
 		}
 	};
 
 	const activeLibraryHandler = (newSong) => {
-		const newSongs = songs.map((song) => {
-			if (song.id === newSong.id) {
+		const newSongs = songs?.map((song) => {
+			if (song?.id === newSong?.id) {
 				return {
 					...song,
 					active: true,
@@ -152,7 +163,7 @@ const Track = styled.div`
 	position: relative;
 	border-radius: 1rem;
 	overflow: hidden;
-	background: linear-gradient(to right, ${(p) => p.currentSong.color[0]}, ${(p) => p.currentSong.color[1]});
+	background: linear-gradient(to right, ${(p) => p?.currentSong?.color[0] ?? ''}, ${(p) => p?.currentSong?.color[1] ?? ''});
 `;
 
 const AnimateTrack = styled.div`

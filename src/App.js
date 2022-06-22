@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import "./App.css";
 
@@ -16,6 +16,7 @@ const App = () => {
 	const audioRef = useRef(null);
 
 	// State
+  const [isLoading, setIsLoading] = useState(true);
 	const [songs, setSongs] = useState(data());
 	const [currentSong, setCurrentSong] = useState(songs[0]);
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -56,39 +57,53 @@ const App = () => {
 			audioRef.current.play();
 		}
 	};
+	
+	useEffect(()=>{
+		setTimeout(()=>{
+			setIsLoading(false);
+		}, 2000)
+	}, [])
 
 	return (
-		<AppContainer libraryStatus={libraryStatus}>
-			<Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
-			<Song currentSong={currentSong} />
-			<Player
-				isPlaying={isPlaying}
-				setIsPlaying={setIsPlaying}
-				currentSong={currentSong}
-				setCurrentSong={setCurrentSong}
-				audioRef={audioRef}
-				songInfo={songInfo}
-				setSongInfo={setSongInfo}
-				songs={songs}
-				setSongs={setSongs}
-			/>
-			<Library
-				songs={songs}
-				setCurrentSong={setCurrentSong}
-				audioRef={audioRef}
-				isPlaying={isPlaying}
-				setSongs={setSongs}
-				libraryStatus={libraryStatus}
-			/>
-			<Credit />
-			<audio
-				onLoadedMetadata={updateTimeHandler}
-				onTimeUpdate={updateTimeHandler}
-				onEnded={songEndHandler}
-				ref={audioRef}
-				src={currentSong.audio}
-			/>
+		!isLoading ? (
+      <AppContainer libraryStatus={libraryStatus}>
+        <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
+        <Song currentSong={currentSong} />
+        <Player
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+          currentSong={currentSong}
+          setCurrentSong={setCurrentSong}
+          audioRef={audioRef}
+          songInfo={songInfo}
+          setSongInfo={setSongInfo}
+          songs={songs}
+          setSongs={setSongs}
+        />
+        <Library
+          songs={songs}
+          setCurrentSong={setCurrentSong}
+          audioRef={audioRef}
+          isPlaying={isPlaying}
+          setSongs={setSongs}
+          libraryStatus={libraryStatus}
+        />
+        <Credit />
+        <audio
+          onLoadedMetadata={updateTimeHandler}
+          onTimeUpdate={updateTimeHandler}
+          onEnded={songEndHandler}
+          ref={audioRef}
+          src={currentSong.audio}
+        />
 		</AppContainer>
+    ) : (
+      <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'center'}}>
+        <div class="loadingio-spinner-ellipsis-0ghojfxl5daq"><div class="ldio-h5clqrkxu4p">
+        <div></div><div></div><div></div><div></div><div></div>
+        </div></div>
+      </div>
+    )
 	);
 };
 
