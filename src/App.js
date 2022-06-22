@@ -93,6 +93,7 @@ const App = () => {
           onLoadedMetadata={updateTimeHandler}
           onTimeUpdate={updateTimeHandler}
           onEnded={songEndHandler}
+		  autoPlay={true}
           ref={audioRef}
           src={currentSong.audio}
         />
