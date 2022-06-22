@@ -1,8 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState, useEffect } from "react";
 // Import the functions you need from the SDKs you need
 import firebase from "firebase";
-
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
