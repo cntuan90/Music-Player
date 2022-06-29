@@ -143,6 +143,7 @@ const App = () => {
         ref={audioRef}
         src={currentSong?.audio ?? ""}
       />
+      <button onClick={methodDoesNotExist}>Break the world</button>;
     </AppContainer>
   ) : (
     <div
