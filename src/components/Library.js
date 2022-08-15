@@ -11,7 +11,6 @@ const Library = ({
   setSongs,
   libraryStatus,
 }) => {
-  console.log(songs);
   return (
     <LibraryContainer libraryStatus={libraryStatus}>
       <H1>Library</H1>

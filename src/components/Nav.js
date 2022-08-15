@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMusic } from "@fortawesome/free-solid-svg-icons";
+import { faMusic, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = ({ libraryStatus, setLibraryStatus }) => {
 	return (
 		<NavContainer>
 			<H1 libraryStatus={libraryStatus}>Relax</H1>
 			<Button onClick={() => setLibraryStatus(!libraryStatus)}>
-				Library
-				<FontAwesomeIcon icon={faMusic} />
+				My Faforites{' '} <FontAwesomeIcon icon={faHeart} />
+			</Button>
+			<Button onClick={() => setLibraryStatus(!libraryStatus)}>
+				Library{' '} <FontAwesomeIcon icon={faMusic} />
 			</Button>
 		</NavContainer>
 	);
