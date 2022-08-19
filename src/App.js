@@ -76,6 +76,7 @@ const App = () => {
 
   const fetchData = async () => {
     const listData = await storageRef.listAll();
+    console.log("listData", listData)
     if (listData?._delegate?.items.length === 0) return;
     try {
       let musicList = [];
