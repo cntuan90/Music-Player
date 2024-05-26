@@ -31,4 +31,4 @@ yarn build
 This will build the app for production to the "build" folder. The Built version will be optimized for best performance.
 
 // Git page deploy
-https://cntuan90.github.io/Music-Player/
+https://cntuan90.github.io/music-player/
